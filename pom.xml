@@ -7,6 +7,25 @@
     <groupId>consensus</groupId>
     <artifactId>consensus</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+     <properties>
+         <mahout.version>0.9</mahout.version>
+     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>nz.ac.waikato.cms.weka</groupId>
+            <artifactId>weka-stable</artifactId>
+            <version>3.6.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.mahout</groupId>
+            <artifactId>mahout-core</artifactId>
+            <version>${mahout.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.mahout</groupId>
+            <artifactId>mahout-math</artifactId>
+            <version>${mahout.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>
