@@ -21,7 +21,7 @@ public class Consensus {
 
     public void start(int groupsAmount, int resamplingAmount) {
         for (int i = 0; i < groupsAmount; i++) {
-            new Resampling().resample(resamplingAmount);
+            Integer[][] resampled = new Resampling().resample(resamplingAmount, data);
             connectivityMatrix.add(new KmeansClustering().perform().getConnectivityMatrix());
         }
     }
