@@ -1,29 +1,35 @@
 package com.szczerbicki.clustering;
 
+import org.apache.commons.math3.random.RandomDataGenerator;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by Pawel on 2014-12-14.
  */
 public class KmeansClustering {
 
-    private final int NUM_CLUSTERS = 3;
-    private final int TOTAL_DATA = 7;
+    private final int NUM_CLUSTERS;
+    private final int TOTAL_DATA;
+    private final Integer MAX;
+    private final Integer MIN;
+    private Integer samples[][];
 
-    private final double SAMPLES[][] = new double[][]{{1.0, 1.0},
-            {1.5, 2.0},
-            {3.0, 4.0},
-            {5.0, 7.0},
-            {3.5, 5.0},
-            {4.5, 5.0},
-            {3.5, 4.5}};
+    public KmeansClustering(Integer[][] samples, int size, int groupsAmount, int maxVal, int minVal) {
+        this.samples = samples;
+        this.NUM_CLUSTERS = groupsAmount;
+        this.TOTAL_DATA = size;
+        this.MAX = maxVal;
+        this.MIN = minVal;
+    }
 
     private ArrayList<Data> dataSet = new ArrayList<>();
     private ArrayList<Centroid> centroids = new ArrayList<>();
 
     private void initialize() {
-        centroids.add(new Centroid(1.0, 1.0));
-        centroids.add(new Centroid(5.0, 7.0));
+        RandomDataGenerator r = new RandomDataGenerator();
+        for (int i = 0; i < TOTAL_DATA; i++) centroids.add(new Centroid(r.nextInt(MIN, MAX), r.nextInt(MIN, MAX)));
     }
 
     public KmeansClustering perform() {
@@ -37,7 +43,7 @@ public class KmeansClustering {
         Data newData;
 
         while (dataSet.size() < TOTAL_DATA) {
-            newData = new Data(SAMPLES[sampleNumber][0], SAMPLES[sampleNumber][1]);
+            newData = new Data(samples[sampleNumber][0], samples[sampleNumber][1]);
             dataSet.add(newData);
             minimum = bigNumber;
             for (int i = 0; i < NUM_CLUSTERS; i++) {

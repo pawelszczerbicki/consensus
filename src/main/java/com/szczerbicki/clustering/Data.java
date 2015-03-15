@@ -39,4 +39,8 @@ public class Data {
     public int cluster() {
         return this.mCluster;
     }
+
+    public String someString(){
+        return "";
+    }
 }
