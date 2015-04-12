@@ -3,7 +3,6 @@ package com.szczerbicki.clustering;
 import org.apache.commons.math3.random.RandomDataGenerator;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by Pawel on 2014-12-14.

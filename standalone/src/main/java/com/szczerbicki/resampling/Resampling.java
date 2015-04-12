@@ -1,8 +1,6 @@
 package com.szczerbicki.resampling;
 
-import java.util.HashSet;
 import java.util.Random;
-import java.util.Set;
 
 /**
  * Created by Pawel on 2014-12-14.
