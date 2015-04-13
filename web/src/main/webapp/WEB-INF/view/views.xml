@@ -6,4 +6,8 @@
     <definition extends="main" name="index" >
     </definition>
 
+    <definition extends="main" name="task" >
+        <put-attribute name="body" value="/WEB-INF/view/task.jsp"/>
+    </definition>
+
 </tiles-definitions>

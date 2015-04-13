@@ -13,4 +13,9 @@ public class IndexController {
     public String welcome(){
         return "index";
     }
+
+    @RequestMapping("/tasks/{id}")
+    public String task(){
+        return "task";
+    }
 }
