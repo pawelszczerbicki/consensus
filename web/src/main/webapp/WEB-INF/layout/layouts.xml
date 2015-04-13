@@ -5,6 +5,7 @@
 <tiles-definitions>
 
     <definition name="main" template="/WEB-INF/layout/main.jsp">
+        <put-attribute name="body" value="/WEB-INF/view/index.jsp"/>
     </definition>
 
 </tiles-definitions>
