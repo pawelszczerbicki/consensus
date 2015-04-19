@@ -27,6 +27,9 @@ public class MediaData {
         this.size = file.getSize();
     }
 
+    public MediaData() {
+    }
+
     public byte[] getBytes() {
         return bytes;
     }

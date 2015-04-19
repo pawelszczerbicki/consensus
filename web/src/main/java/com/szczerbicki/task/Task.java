@@ -23,13 +23,18 @@ public class Task {
 
     private Integer proceeded = 0;
 
+    private Integer cores = 0;
+
+    private boolean finished;
+
     public Task() {
     }
 
     public Task(TaskDto dto) {
         this.name = dto.getName();
+        this.finished = dto.isFinished();
         try {
-            this.file = new MediaData(dto.getDataFile());
+            this.file = new MediaData(dto.getFile());
         } catch (IOException e) {
             throw new IllegalStateException("Can not create media data from multipart file");
         }
@@ -73,5 +78,21 @@ public class Task {
 
     public void setFile(MediaData file) {
         this.file = file;
+    }
+
+    public Integer getCores() {
+        return cores;
+    }
+
+    public void setCores(Integer cores) {
+        this.cores = cores;
+    }
+
+    public boolean isFinished() {
+        return finished;
+    }
+
+    public void setFinished(boolean finished) {
+        this.finished = finished;
     }
 }

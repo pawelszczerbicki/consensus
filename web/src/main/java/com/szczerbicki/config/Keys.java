@@ -11,4 +11,5 @@ public class Keys {
     public static final String DRIVE_FOLDER_ID = "drive.folder.id";
     public static final String DRIVE_APP_NAME = "Consensus";
     public static final String DRIVE_UPLOAD_ENABLED = "drive.upload";
+    public static final String DRIVE_URL = "https://www.googledrive.com/host/%s";
 }

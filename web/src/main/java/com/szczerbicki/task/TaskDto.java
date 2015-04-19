@@ -1,6 +1,9 @@
 package com.szczerbicki.task;
 
+import com.szczerbicki.config.Keys;
 import org.springframework.web.multipart.MultipartFile;
+
+import static java.lang.String.format;
 
 /**
  * Created by pawel on 15.04.15.
@@ -13,9 +16,15 @@ public class TaskDto {
 
     private String fileName;
 
+    private String fileUrl;
+
     private Double progress;
 
-    private MultipartFile dataFile;
+    private Integer cores = 0;
+
+    private boolean finished;
+
+    private MultipartFile file;
 
     public TaskDto() {
     }
@@ -24,7 +33,10 @@ public class TaskDto {
         this.id = t.getId();
         this.name = t.getName();
         this.fileName = t.getFile().getName();
-        this.progress = (double) t.getProceeded() / t.getOverallAmount();
+        this.progress = (double) t.getProceeded() / (t.getOverallAmount() == 0 ? 1 : t.getOverallAmount());
+        this.cores = t.getCores();
+        this.finished = t.isFinished();
+        this.fileUrl = format(Keys.DRIVE_URL, t.getFile().getId());
     }
 
     public String getId() {
@@ -59,11 +71,35 @@ public class TaskDto {
         this.progress = progress;
     }
 
-    public MultipartFile getDataFile() {
-        return dataFile;
+    public MultipartFile getFile() {
+        return file;
     }
 
-    public void setDataFile(MultipartFile dataFile) {
-        this.dataFile = dataFile;
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
+
+    public Integer getCores() {
+        return cores;
+    }
+
+    public void setCores(Integer cores) {
+        this.cores = cores;
+    }
+
+    public boolean isFinished() {
+        return finished;
+    }
+
+    public void setFinished(boolean finished) {
+        this.finished = finished;
+    }
+
+    public String getFileUrl() {
+        return fileUrl;
+    }
+
+    public void setFileUrl(String fileUrl) {
+        this.fileUrl = fileUrl;
     }
 }

@@ -15,7 +15,7 @@
             <div class="modal-header">
                 <h4 class="modal-title">New task</h4>
             </div>
-            <form class="form-horizontal" action="/tasks" method="POST">
+            <form class="form-horizontal" action="/tasks" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     <fieldset>
                         <div class="form-group">
@@ -46,21 +46,20 @@
         <th>Name</th>
         <th>Cores</th>
         <th>Progress</th>
+        <th>State</th>
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td><a href="/tasks/1">1</a></td>
-        <td>Column content</td>
-        <td>Column content</td>
-        <td>Column content</td>
-    </tr>
-    <tr>
-        <td><a href="/tasks/2">2</a></td>
-        <td>Column content</td>
-        <td>Column content</td>
-        <td>Column content</td>
-    </tr>
+    <c:forEach items="${tasks}" var="task">
+        <tr>
+            <td><a href="<c:url value="/tasks/${task.id}"/>">More</a></td>
+            <td>${task.name}</td>
+            <td>${task.cores}</td>
+            <td>${task.progress}</td>
+            <td><c:if test="${task.finished == true}">Finished</c:if><c:if test="${task.finished == false}">In progress</c:if></td>
+        </tr>
+    </c:forEach>
+
     </tbody>
 </table>
 

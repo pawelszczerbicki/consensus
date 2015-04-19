@@ -23,7 +23,7 @@ public class DriveService {
     private ConfigService config;
 
     public MediaData store(MediaData media) {
-        if (config.propertyAsBoolean(DRIVE_UPLOAD_ENABLED))
+        if (!config.propertyAsBoolean(DRIVE_UPLOAD_ENABLED))
             logger.info("Drive upload disabled. exiting");
         else
             try {
