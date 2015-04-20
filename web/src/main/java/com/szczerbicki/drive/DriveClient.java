@@ -11,7 +11,7 @@ import com.szczerbicki.config.ConfigService;
 
 import java.io.IOException;
 
-import static com.szczerbicki.config.Keys.*;
+import static com.szczerbicki.utils.Keys.*;
 import static java.util.Collections.singletonList;
 
 /**
@@ -45,13 +45,5 @@ public class DriveClient {
                 .setTitle(title)
                 .setParents(singletonList(new ParentReference().setId(parentFolderId)));
         return drive.files().insert(driveFile, new ByteArrayContent("", data)).execute();
-    }
-
-    public File createFolder(String name) throws IOException {
-        File folder = new File()
-                .setTitle(name)
-                .setMimeType("application/vnd.google-apps.folder")
-                .setParents(singletonList(new ParentReference().setId(config.property(DRIVE_FOLDER_ID))));
-        return drive.files().insert(folder).execute();
     }
 }

@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
-import static com.szczerbicki.config.Keys.DRIVE_FOLDER_ID;
-import static com.szczerbicki.config.Keys.DRIVE_UPLOAD_ENABLED;
+import static com.szczerbicki.utils.Keys.DRIVE_FOLDER_ID;
+import static com.szczerbicki.utils.Keys.DRIVE_UPLOAD_ENABLED;
 
 /**
  * Created by pawel on 11.04.15.

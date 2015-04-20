@@ -1,8 +1,8 @@
 package com.szczerbicki.task;
 
-import com.szczerbicki.config.Keys;
 import org.springframework.web.multipart.MultipartFile;
 
+import static com.szczerbicki.utils.Keys.DRIVE_URL;
 import static java.lang.String.format;
 
 /**
@@ -22,6 +22,8 @@ public class TaskDto {
 
     private Integer cores = 0;
 
+    private Long proceedTimeMillis;
+
     private boolean finished;
 
     private MultipartFile file;
@@ -29,14 +31,14 @@ public class TaskDto {
     public TaskDto() {
     }
 
-    public TaskDto(Task t) {
-        this.id = t.getId();
-        this.name = t.getName();
-        this.fileName = t.getFile().getName();
-        this.progress = (double) t.getProceeded() / (t.getOverallAmount() == 0 ? 1 : t.getOverallAmount());
-        this.cores = t.getCores();
-        this.finished = t.isFinished();
-        this.fileUrl = format(Keys.DRIVE_URL, t.getFile().getId());
+    public TaskDto(String id, String name, String fileName, String fileId, int proceeded, int overallAmount, int cores, boolean finished) {
+        this.id = id;
+        this.name = name;
+        this.fileName = fileName;
+        this.progress = (double) proceeded / (overallAmount == 0 ? 1 : overallAmount);
+        this.cores = cores;
+        this.finished = finished;
+        this.fileUrl = format(DRIVE_URL, fileId);
     }
 
     public String getId() {
@@ -101,5 +103,13 @@ public class TaskDto {
 
     public void setFileUrl(String fileUrl) {
         this.fileUrl = fileUrl;
+    }
+
+    public Long getProceedTimeMillis() {
+        return proceedTimeMillis;
+    }
+
+    public void setProceedTimeMillis(Long proceedTimeMillis) {
+        this.proceedTimeMillis = proceedTimeMillis;
     }
 }

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
@@ -27,10 +28,25 @@ public class TaskService {
     }
 
     public List<TaskDto> getAll() {
-        return dao.findAll().stream().map(TaskDto::new).collect(toList());
+        return dao.findAll().stream().map(this::toDto).collect(toList());
     }
 
     public TaskDto get(String id) {
-        return new TaskDto(dao.findOne(id).get());
+        return toDto(dao.findOne(id).get());
+    }
+
+    public Optional<Task> getFirstUnfinished() {
+        return dao.getFirstUnfinished();
+    }
+
+    private TaskDto toDto(Task t) {
+        return new TaskDto(t.getId(), t.getName(), t.getFile().getName(), t.getFile().getId(), t.getProceeded(), t.getOverallAmount(), t.getCores(), t.isFinished());
+    }
+
+    public void finishTask(TaskDto dto) {
+        Task t = dao.findOne(dto.getId()).get();
+        t.setFinished(dto.isFinished());
+        t.setTimeMillis(dto.getProceedTimeMillis());
+        dao.save(t);
     }
 }

@@ -25,6 +25,8 @@ public class Task {
 
     private Integer cores = 0;
 
+    private Long timeMillis = 0l;
+
     private boolean finished;
 
     public Task() {
@@ -94,5 +96,13 @@ public class Task {
 
     public void setFinished(boolean finished) {
         this.finished = finished;
+    }
+
+    public Long getTimeMillis() {
+        return timeMillis;
+    }
+
+    public void setTimeMillis(Long timeSeconds) {
+        this.timeMillis = timeSeconds;
     }
 }
