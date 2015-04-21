@@ -14,32 +14,33 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.Optional;
 
 import static com.szczerbicki.utils.Keys.TASK_ADDED;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
  * Created by pawel on 20.04.15.
  */
 @Controller
-@RequestMapping("/task/")
+@RequestMapping("/tasks/")
 public class TaskController {
 
     @Autowired
     private TaskService service;
 
-    @RequestMapping("/tasks/{id}")
+    @RequestMapping("/{id}")
     public String task(@PathVariable String id, Model m) {
         m.addAttribute("task", service.get(id));
         return "task";
     }
 
-    @RequestMapping(value = "/tasks", method = POST)
+    @RequestMapping(method = POST)
     public String addTask(RedirectAttributes redirect, TaskDto t) {
         service.saveNewTask(t);
         redirect.addFlashAttribute("success", TASK_ADDED);
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/tasks/first")
+    @RequestMapping(value = "/first", method = GET)
     @ResponseBody
     public JsonResponse getFirstToDo() {
         Optional<Task> unfinished = service.getFirstUnfinished();
@@ -48,7 +49,7 @@ public class TaskController {
         return SuccessResponse.create(unfinished.get());
     }
 
-    @RequestMapping(value = "/tasks/finish", method = POST)
+    @RequestMapping(value = "/finish", method = POST)
     @ResponseBody
     public JsonResponse finishTask(TaskDto t) {
         service.finishTask(t);
