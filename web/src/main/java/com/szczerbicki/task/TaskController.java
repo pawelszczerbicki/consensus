@@ -21,7 +21,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
  * Created by pawel on 20.04.15.
  */
 @Controller
-@RequestMapping("/tasks/")
+@RequestMapping("/tasks")
 public class TaskController {
 
     @Autowired
@@ -46,13 +46,13 @@ public class TaskController {
         Optional<Task> unfinished = service.getFirstUnfinished();
         if (!unfinished.isPresent())
             return FailResponse.create();
-        return SuccessResponse.create(unfinished.get());
+        return SuccessResponse.create(service.toDto(unfinished.get()));
     }
 
-    @RequestMapping(value = "/finish", method = POST)
+    @RequestMapping(value = "/finish/{id}", method = POST)
     @ResponseBody
-    public JsonResponse finishTask(TaskDto t) {
-        service.finishTask(t);
+    public JsonResponse finishTask(@PathVariable String id) {
+        service.finishTask(id);
         return SuccessResponse.create();
     }
 }

@@ -1,9 +1,11 @@
 package com.szczerbicki.json;
 
+import com.szczerbicki.task.TaskDto;
+
 /**
  * Created by pawel on 25.03.15.
  */
-public class FailResponse<T> extends JsonResponse<T> {
+public class FailResponse extends JsonResponse {
 
     public static final String FAIL = "fail";
 
@@ -11,15 +13,15 @@ public class FailResponse<T> extends JsonResponse<T> {
         this(null);
     }
 
-    private FailResponse(T data) {
+    private FailResponse(TaskDto data) {
         super(data, FAIL);
     }
 
-    public static <T> FailResponse<T> create(T data) {
-        return new FailResponse<>(data);
+    public static FailResponse create(TaskDto data) {
+        return new FailResponse(data);
     }
 
-    public static <T> FailResponse<T> create() {
-        return new FailResponse<>();
+    public static  FailResponse create() {
+        return new FailResponse();
     }
 }

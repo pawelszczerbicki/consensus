@@ -39,8 +39,13 @@ public class TaskWorker {
 
     private void serviceTask(TaskDto t) {
         logger.info("New task, starting " + t.getName());
-        run(service.getData(t), t);
-        service.finished(t);
+        try{
+            run(service.getData(t), t);
+        }catch (Exception e){
+            logger.error("Exception during performing task, finishing" ,e);
+        }finally {
+            service.finished(t);
+        }
     }
 
     private void run(Integer[][] data, TaskDto t) {

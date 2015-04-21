@@ -11,7 +11,7 @@ import static java.lang.Integer.parseInt;
  * Created by pawel on 20.04.15.
  */
 public class TaskService {
-    private RestClient<TaskDto> client = new RestClient<>();
+    private RestClient client = new RestClient();
 
     public Optional<TaskDto> getFirst() {
         return client.get(Keys.TASK_URL);

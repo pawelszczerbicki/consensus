@@ -1,20 +1,29 @@
 package com.szczerbicki.json;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.szczerbicki.task.TaskDto;
+
 /**
  * Created by pawel on 25.03.15.
  */
-public abstract class JsonResponse<T> {
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "status")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = FailResponse.class, name = FailResponse.FAIL),
+        @JsonSubTypes.Type(value = SuccessResponse.class, name = SuccessResponse.SUCCESS),
+})
+public abstract class JsonResponse {
 
     private String status;
 
-    private T data;
+    private TaskDto data;
 
-    public JsonResponse(T data, String status) {
+    public JsonResponse(TaskDto data, String status) {
         this.data = data;
         this.status = status;
     }
 
-    public T getData() {
+    public TaskDto getData() {
         return data;
     }
 

@@ -1,5 +1,6 @@
 package com.szczerbicki.task;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
 
 import static com.szczerbicki.utils.Keys.DRIVE_URL;
@@ -26,6 +27,7 @@ public class TaskDto {
 
     private boolean finished;
 
+    @JsonIgnore
     private MultipartFile file;
 
     public TaskDto() {

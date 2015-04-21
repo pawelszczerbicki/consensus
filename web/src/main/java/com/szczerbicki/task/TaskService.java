@@ -39,14 +39,13 @@ public class TaskService {
         return dao.getFirstUnfinished();
     }
 
-    private TaskDto toDto(Task t) {
+    public TaskDto toDto(Task t) {
         return new TaskDto(t.getId(), t.getName(), t.getFile().getName(), t.getFile().getId(), t.getProceeded(), t.getOverallAmount(), t.getCores(), t.isFinished());
     }
 
-    public void finishTask(TaskDto dto) {
-        Task t = dao.findOne(dto.getId()).get();
-        t.setFinished(dto.isFinished());
-        t.setTimeMillis(dto.getProceedTimeMillis());
+    public void finishTask(String id) {
+        Task t = dao.findOne(id).get();
+        t.setFinished(true);
         dao.save(t);
     }
 }

@@ -12,6 +12,6 @@ public class Keys {
     public static final String DRIVE_APP_NAME = "Consensus";
     public static final String DRIVE_UPLOAD_ENABLED = "drive.upload";
     public static final String DRIVE_URL = "https://www.googledrive.com/host/%s";
-    public static final String TASK_URL = "http://consensus-clustering.herokuapp.com/tasks/first";
-    public static final String TASK_FINISHED_URL = "http://consensus-clustering.herokuapp.com/tasks/finished";
+    public static final String TASK_URL = "http://localhost:8080/tasks/first";
+    public static final String TASK_FINISHED_URL = "http://localhost:8080/tasks/finish/%s";
 }
